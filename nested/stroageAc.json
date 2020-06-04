@@ -15,7 +15,7 @@
     "variables": {},
     "resources": [
         {
-            "name": "[parametes('stAcName')]",
+            "name": "[parameters('stAcName')]",
             "type": "Microsoft.Storage/StroageAccounts",
             "location": "[parameters('stAcLoc')]",
             "apiVersion": "2016-01-01",
