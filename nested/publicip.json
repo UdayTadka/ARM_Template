@@ -20,13 +20,13 @@
     "resources": [
         {
             "name": "[parameters('publicIpName')]",
-            "type": "Microsoft.Network/PublicIPAddresses",
+            "type": "Microsoft.Network/publicIPAddresses",
             "location":"[parameters('location')]",
             "apiVersion": "2015-06-15",
             "properties": {
                 "publicIPAllocationMethod":"[parameters('pipAllocation')]",
                 "dnsSettings":{
-                    "dnsNameLabel":"[parameters('DNSlabel')]"
+                    "domainNameLabel":"[parameters('DNSlabel')]"
                 }
             }
         }
