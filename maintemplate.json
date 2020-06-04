@@ -1,0 +1,63 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {},
+    "variables": {
+        "vnetdetails":{
+            "vnetname": "[variables('vnet_name')]",
+            "vnetAddressPrefix": "172.18.0.0/16",
+            "Subnet1Name":"subnet1jenkins",
+            "Subnet1Prefix":"172.18.0.0/24",
+            "Subnet2Name":"subnet2tomcat",
+            "Subnet2Prefix":"172.18.1.0/24"
+        },
+
+        "vnet_name": "myvnet",
+        "apiVersion": "2015-01-01",
+        "baseUrl":"",
+        "vnetUrl":"[concat(variables('baseUrl'),'/nested/vnet.json')]",
+        "location": "[resourceGroup().location]"   
+    },
+    "resources": [
+       {
+            "name": "vnetSetup",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "[variables('apiVersion')]",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('vnetUrl')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "virtualNetworkName": {
+                        "value": "[variables('vnetdetails').vnetname]"
+                    },
+                    "virtualNetworkAddressPrefix": {
+                        "value": "[variables('vnetdetails').vnetAddressPrefix]"
+                    },
+                    "subnet1Name": {
+                        "value": "[variables('vnetdetails').Subnet1Name]"
+                    },
+                    "subnet1AddressPrefix": {
+                        "value": "[variables('vnetdetails').Subnet1Prefix]"
+                    },
+                    "subnet2Name": {
+                        "value": "[variables('vnetdetails').Subnet2Name]"
+                    },
+                    "subnet2AddressPrefix": {
+                        "value": "[variables('vnetdetails').Subnet2Prefix]"
+                    },
+                    "location": {
+                        "value": "[variables('location')]"
+                    }
+                }
+            }
+        }
+
+       
+
+
+    ]
+
+}
