@@ -14,7 +14,7 @@
         "strgDetails":{
             "st_name": "[variables('strg_name')]",
             "st_type": "Standard_LRS",
-            "st_url":"[concat(variables('baseUrl'), 'nested/strg.json')]"
+            "st_url":"[concat(variables('baseUrl'), 'nested/stroageAc.json')]"
         },
         "pipDetails":{
             "pipName":"publicip",
