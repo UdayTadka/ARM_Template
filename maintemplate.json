@@ -14,7 +14,13 @@
         "strgDetails":{
             "st_name": "[variables('strg_name')]",
             "st_type": "Standard_LRS",
-            "st_url":"[concat(variables('baseUrl'), 'nested/stroageAc.json')]"
+            "st_url":"[concat(variables('baseUrl'), 'nested/strg.json')]"
+        },
+        "pipDetails":{
+            "pipName":"publicip",
+            "pipAllMethod":"Dynamic",
+            "pipDNS":"webapp",
+            "pipUrl":"[concat(variables('baseUrl'), 'nested/publicip.json')]"
         },
 
 
@@ -22,7 +28,7 @@
         "strg_name":"vmstrg",
         "vnet_name": "myvnet",
         "apiVersion": "2015-01-01",
-        "baseUrl":"https://raw.githubusercontent.com/UdayTadka/ARM_Template/publicip/",
+        "baseUrl":"https://raw.githubusercontent.com/UdayTadka/ARM_Template/master/",
         "vnetUrl":"[concat(variables('baseUrl'),'nested/vnet.json')]",
         "location": "[resourceGroup().location]"   
     },
@@ -88,11 +94,35 @@
 
 
             }
+        },
+        {
+            "name": "pubicip",
+            "apiVersion": "[variables('apiVersion')]",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "templateLink":{
+                    "uri": "[variables('pipDetails').pipUrl]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "mode":"Incremental",
+                "parameters":{
+                    "publicIpName":{
+                        "value":"[variables('pipDetails').pipName]"
+                    },
+                    "pipAllocation":{
+                        "value":"[variables('pipDetails').pipAllMethod]"
+                    },
+                    "DNSlabel":{
+                        "value":"[variables('pipDetails').pipDNS]"
+                    },
+
+                    "location":{
+                        "value": "[variables('location')]"
+                    }
+
+                }
+            }
         }
-
-       
-
-
     ]
 
 }
