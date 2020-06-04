@@ -22,7 +22,7 @@
         "strg_name":"vmstrg",
         "vnet_name": "myvnet",
         "apiVersion": "2015-01-01",
-        "baseUrl":"https://raw.githubusercontent.com/UdayTadka/ARM_Template/master/",
+        "baseUrl":"https://raw.githubusercontent.com/UdayTadka/ARM_Template/publicip/",
         "vnetUrl":"[concat(variables('baseUrl'),'nested/vnet.json')]",
         "location": "[resourceGroup().location]"   
     },
