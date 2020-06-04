@@ -81,7 +81,7 @@
                         "value":"[variables('strgDetails').st_type]"
                     },
                     "stAcLoc":{
-                        "value":"[variales('location')]"
+                        "value":"[variables('location')]"
                     }
 
                 }
