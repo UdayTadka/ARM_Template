@@ -14,7 +14,7 @@
 
         "vnet_name": "myvnet",
         "apiVersion": "2015-01-01",
-        "baseUrl":"",
+        "baseUrl":"https://raw.githubusercontent.com/UdayTadka/ARM_Template/master/",
         "vnetUrl":"[concat(variables('baseUrl'),'/nested/vnet.json')]",
         "location": "[resourceGroup().location]"   
     },
