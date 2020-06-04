@@ -47,13 +47,13 @@
                     "subnet1Name": {
                         "value": "[variables('vnetdetails').Subnet1Name]"
                     },
-                    "subnet1AddressPrefix": {
+                    "subnet1Prefix": {
                         "value": "[variables('vnetdetails').Subnet1Prefix]"
                     },
                     "subnet2Name": {
                         "value": "[variables('vnetdetails').Subnet2Name]"
                     },
-                    "subnet2AddressPrefix": {
+                    "subnet2Prefix": {
                         "value": "[variables('vnetdetails').Subnet2Prefix]"
                     },
                     "location": {
