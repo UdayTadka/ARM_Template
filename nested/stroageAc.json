@@ -1,0 +1,41 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "stAcName":{
+            "type": "string"
+        },
+        "stAcType":{
+            "type": "string"
+        },
+        "stAcLoc":{
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "name": "[parametes('stAcName')]",
+            "type": "Microsoft.Storage/StroageAccounts",
+            "location": "[parameters('stAcLoc')]",
+            "apiVersion": "2016-01-01",
+            "properties": {
+
+            },
+            "sku":{
+                "name":"[parameters('stAcType')]"
+            },
+            "kind": "Storage"
+
+        }
+    ],
+    "outputs": {
+        "storageAccId":{
+            "value": "[resourceId('Microsoft.Storage/StorageAccounts', parameters('stAcName'))]",
+            "type": "string"
+        }
+    }
+
+
+
+}

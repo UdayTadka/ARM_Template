@@ -11,11 +11,19 @@
             "Subnet2Name":"subnet2tomcat",
             "Subnet2Prefix":"172.18.1.0/24"
         },
+        "strgDetails":{
+            "st_name": "[variables('strg_name')]",
+            "st_type": "Standard_LRS",
+            "st_url":"[concat(variables('baseUrl'), 'nested/strg.json')]"
+        },
 
+
+
+        "strg_name":"vmstrg",
         "vnet_name": "myvnet",
         "apiVersion": "2015-01-01",
-        "baseUrl":"",
-        "vnetUrl":"[concat(variables('baseUrl'),'/nested/vnet.json')]",
+        "baseUrl":"https://raw.githubusercontent.com/UdayTadka/ARM_Template/master/",
+        "vnetUrl":"[concat(variables('baseUrl'),'nested/vnet.json')]",
         "location": "[resourceGroup().location]"   
     },
     "resources": [
@@ -52,6 +60,33 @@
                         "value": "[variables('location')]"
                     }
                 }
+            }
+        },
+
+        {
+            "name": "strgAcSetup",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "[variables('apiVersion')]",
+            "properties": {
+                "mode":"Incremental",
+                "templateLink":{
+                    "uri": "[variables('strgDetails').st_url]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters":{
+                    "stAcName":{
+                        "value": "[variables('strgDetails').st_name]"
+                    },
+                    "stAcType":{
+                        "value":"[variables('strgDetails').st_type]"
+                    },
+                    "stAcLoc":{
+                        "value":"[variales('location')]"
+                    }
+
+                }
+
+
             }
         }
 
