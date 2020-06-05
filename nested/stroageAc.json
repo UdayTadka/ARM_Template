@@ -15,8 +15,8 @@
     "variables": {},
     "resources": [
         {
-            "name": "[parameters('stAcName')]",
-            "type": "Microsoft.Storage/StorageAccounts",
+            "name": "[parameters('stAcName'), copyIndex()]",
+            "type": "Microsoft.Storage/StroageAccounts",
             "location": "[parameters('stAcLoc')]",
             "apiVersion": "2016-01-01",
             "properties": {
@@ -25,7 +25,12 @@
             "sku":{
                 "name":"[parameters('stAcType')]"
             },
-            "kind": "Storage"
+            "kind": "Storage",
+            "copy": {
+                "name": "stcp",
+                "count":3,
+                "mode": "Serial"
+            }
 
         }
     ],
