@@ -15,7 +15,7 @@
     "variables": {},
     "resources": [
         {
-            "name": "[parameters('stAcName'), copyIndex()]",
+            "name": "[concat(parameters('stAcName'), copyIndex())]",
             "type": "Microsoft.Storage/StroageAccounts",
             "location": "[parameters('stAcLoc')]",
             "apiVersion": "2016-01-01",
